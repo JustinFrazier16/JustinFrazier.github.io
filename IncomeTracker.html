@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<!--
+	Photon by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Photon by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<!-- Header -->
+			<section id="header">
+				<div class="inner">
+					<h5><strong>Income Tracking Dashboard</strong></h5>
+					<h1>Power BI<h1>
+					<div style="margin: 65px 0 -50px 0;">
+						<span class="image fit" style="width: 80%; justify-self: center;"><img src="images/thumbs/Tips Tracker_page-0001.jpg" alt="" /></span>
+					</div>
+				</div>
+			</section>
+
+		<!-- One -->
+			<section id="one" class="main style1">
+				<div class="container">
+					<div class="row gtr-150">
+						<div class="col-12 col-12-medium">
+							<header class="major">
+								<h2>Overview</h2>
+							</header>
+							<p style="margin: 0 200px 30px 200px; text-align: left;">The Tips Tracker Dashboard was developed to optimize work schedules and develop budgets based on fluctuating income. This dashboard helped me prioritize school and external development by identifying the highest-earning days, allowing for a minimal amount of hours without taking a reduction in pay. This dashboard also allowed for forecasting and resource planning, allowing for better time allocation and budgeting by highlighting months that had higher or lower earning potential.</p>
+							
+							<header class="major">
+								<h2>Data Process</h2>
+							</header>
+							<p style="margin: 0 200px 30px 200px; text-align: left;"><b>Extract:</b> The data for this project was collected from real income earned while working at a restaurant, and was manually entered into an Excel file after each shift. Due to privacy concerns, the original dataset is not public, but is based on the original data and thus accurately reflects earning patterns.</p>
+							<p style="margin: 0 200px 30px 200px; text-align: left;"><b>Transform:</b> Data cleaning and formatting was primarily done in Excel as this is where the data was housed. Date and income fields were formatted as date and currency respectively to properly map in Power BI.</p>
+							<p style="margin: 0 200px 30px 200px; text-align: left;"><b>Load:</b> The clean data was loaded into Power BI with the addition of calculated columns as well as a new date table. This new table included fields such as Year, Month, Month Number, Weekday Name, and Start of Month. This allowed for proper categorization and comparative calculations. </p>
+
+							<header class="major">
+								<h2>Challenges</h2>
+							</header>
+							<h3 style="margin: 0 200px 30px 200px; text-align: left;"><i>Hours Vs. Income</i></h3>
+							<p style="margin: 0 200px 30px 200px; text-align: left;"><b>Challenge:</b> Periods with higher work hours naturally inflates income, skewing the perception of earning potential.</p>
+							<p style="margin: 0 200px 30px 200px; text-align: left;"><b>Solution:</b> Implemented a combined line-and-bar graph showcasing both total income and hours worked, with the line indicating hours worked, and the bars indicating income earned. This allowed for a comparison between periods as well as discrepancies between hours and income, ultimately revealing which periods had higher income relative to hours worked.</p>
+
+							<h3 style="margin: 0 200px 30px 200px; text-align: left;"><i>Tipout Decuctions</i></h3>
+							<p style="margin: 0 200px 30px 200px; text-align: left;"><b>Challenge:</b> A 3% tipout policy on total sales reduces earnings, skewing the relationship between actual earnings and work quality indicated by intended tips.</p>
+							<p style="margin: 0 200px 30px 200px; text-align: left;"><b>Solution:</b> IFor the percentages, all income was added together and divided by the total, this shows how much is earned in cash, credit cards, and how much is lost to tipout. For absolute amounts, the amounts are shown as averages per shift as well as the total minus the tipout. This gives a different perspective on the literal amounts in comparison to the total.</p>
+
+							<h3 style="margin: 0 200px 30px 200px; text-align: left;"><i>Dashboard Conversion</i></h3>
+							<p style="margin: 0 200px 30px 200px; text-align: left;"><b>Challenge:</b> The original dashboard was created in Excel, however it lacked advanced visuals and interactivity.</p>
+							<p style="margin: 0 200px 30px 200px; text-align: left;"><b>Solution:</b> The project was rebuilt in Power BI due to the power of the platform in design and performance as well as the ease of integration with Excel data sources. Design was further optimized to enhance interactivity and clarity on the front end and calculated columns and DAX measures were used on the back end.</p>
+
+							<header class="major">
+								<h2>Results/Conclusion</h2>
+							</header>
+							<p style="margin: 0 200px 30px 200px; text-align: left;">Overall the most profitable days to work are Friday through Monday, with the most profitable shift being a double. In terms of hourly income, doubles earn the highest tips per hour, followed by morning and then night shifts. However, night shifts earn a higher overall return, especially during the weekend. Using this information, the work schedule prioritized shifts between Friday and Monday, and a focus on nights to have a higher overall income, despite having a marginally lower hourly rate.</p>
+							<p style="margin: 0 200px 30px 200px; text-align: left;">There is also a strong correlation between hours worked and income earned, however months March through June have the highest tips per hours ratio, as well as the highest earnings overall. For this reason, these months should take priority over the less comparatively lucrative winter months. </p>
+							<p style="margin: 0 200px 60px 200px; text-align: left;">Lastly, on average 22.46% of tips are done in cash, with 63.27% tipped on card. An average of 14.27% of tips are also lost to tipout at the end of each shift, equating to a net loss of roughly $3,600.</p>
+
+							<ul class="actions special">
+								<li><a href="index.html" class="button wide">Homepage</a></li>
+							</ul>
+						</div>
+				</div>
+			</section>
+
+		<!-- Footer -->
+			<section id="footer">
+				<div class="container">
+					<header class="major">
+						<h2>Want to learn more?</h2>
+					</header>
+					<p>Here's my resume!</p>
+					<ul class="actions special">
+						<li><a href="#" class="button wide primary">Resume</a></li>
+					</ul>
+				</div>
+				<ul class="copyright">
+					<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+				</ul>
+			</section>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

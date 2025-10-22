@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<!--
+	Photon by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Photon by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<!-- Header -->
+			<section id="header">
+				<div class="inner">
+					<h5><strong>Animal Shelter Dashboard</strong></h5>
+					<h1>Looker Studio<h1>
+					<div style="margin: 65px 0 0 0;">
+						<iframe width="80%" height="821" src="https://lookerstudio.google.com/embed/reporting/dcb8eba1-866a-4169-84c8-f47fb5a7ff6f/page/8b0SF" frameborder="0" style="border-radius: 8px;" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
+					</div>
+				</div>
+			</section>
+
+		<!-- One -->
+			<section id="one" class="main style1">
+				<div class="container">
+					<div class="row gtr-150">
+						<div class="col-12 col-12-medium">
+							<header class="major">
+								<h2>Overview</h2>
+							</header>
+							<p style="margin: 0 200px 30px 200px; text-align: left;">The Animal Shelter case study was developed due to the business need for a better overall understanding of intake and outcome trends in animal shelters which would lead to more accurate staffing and resource allocation, and a general increase in animal welfare. The data for this case study was cleaned in Excel and MySQL and later visualized in Looker Studio.</p>
+							<p style="margin: 0 200px 30px 200px; text-align: left;"><b>Extract:</b> The animal shelter data used for this project was extracted from data.austintexas.gov. This data was originally stored in a relational database in the Austin, Texas database, but was downloaded as a CSV file to be transformed and cleaned in Excel and later MySQL. However both the intake and outcome datasets needed to be cleaned and transformed before MySQL import.</p>
+							<p style="margin: 0 200px 30px 200px; text-align: left;"><b>Transform:</b> For both datasets, a unique primary key needed to be created as there were necessary duplicates in the data. Fields DateTime and MonthYear required formatting to match MySQL DateTime requirements. FoundLocation also had to be broken out into Street, City, State, and ZipCode to facilitate a more granular analysis. And fields Name, AnimalType, Breed, and Color were dropped from the outcomes datasets as these were already present in the intakes dataset and would lead to unnecessary overlap.</p>
+							<p style="margin: 0 200px 30px 200px; text-align: left;"><b>Load:</b> Three tables were created in MySQL, one for the imported intake data, one for the outcome data, and one which contained the joined dataset. The data was joined using a unique primary join key with a rank and case statement that properly ordered and matched like outcome and intake data. This was necessary due to the varying lengths of times for animals with multiple shelter reentries. This process allowed for proper visualization and exploratory analysis in Looker Studio.</p>
+
+							<header class="major">
+								<h2>Challenges</h2>
+							</header>
+							<h3 style="margin: 0 200px 30px 200px; text-align: left;"><i>Inconsistent/Invalid Data</i></h3>
+							<p style="margin: 0 200px 30px 200px; text-align: left;"><b>Challenge:</b> Data contained broken date formats showing as: ‘2013-12-02T00:00:00-05:00’for DateTime in the Outcomes dataset, this led to inconsistent or inaccurate data.</p>
+							<p style="margin: 0 200px 30px 200px; text-align: left;"><b>Solution:</b> Year and time were broken out into two separate columns in Excel and then recombined to match the ‘yyyy-mm-dd hh:mm’ format required by MySQL.</p>
+
+							<h3 style="margin: 0 200px 30px 200px; text-align: left;"><i>Matching Time Stamps Across Inconsistent Time Periods</i></h3>
+							<p style="margin: 0 200px 30px 200px; text-align: left;"><b>Challenge:</b> Many animals enter and exit the shelter system, for varying amounts of time. This led to several intake and outcome entries tied to the same AnimalID, without any corresponding field linking the two and made it difficult to map the proper intake and outcome data.</p>
+							<p style="margin: 0 200px 30px 200px; text-align: left;"><b>Solution:</b> Implemented validation check using the CASE statement to ensure OutcomeDateTime was greater than IncomeDateTime and using RANK to order IntakeDateTime from earliest to latest. A new joined table was created using a new join primary key which filtered out any lasting erroneous duplicates.</p>
+
+							<h3 style="margin: 0 200px 30px 200px; text-align: left;"><i>Incomplete Geographic Data</i></h3>
+							<p style="margin: 0 200px 30px 200px; text-align: left;"><b>Challenge:</b> In order to be properly visualized in a map in Looker, FoundLocation needed to be split into four separate columns: Street, City, State, and ZipCode. However, for most entries half or none of this data was present.</p>
+							<p style="margin: 0 200px 30px 200px; text-align: left;"><b>Solution:</b> Using a combination of IFS and SEARCH in Excel, Street, City, and State were extracted from FoundLocation. For the ZipCode, an IFS statement was used to match the corresponding ZipCode to each city.</p>
+
+							<header class="major">
+								<h2>Results/Conclusion</h2>
+							</header>
+							<p style="margin: 0 200px 30px 200px; text-align: left;">By analyzing standard shelter KPIs such as Adoption Rate, Euthenasia Rate, Average Rate of Return, Average Length of Stay, and Intake Vs. Outcome Balance, this dashboard serves as a guide Austin animal shelters can use to make data driven decisions. The following is the results per KPI:</p>
+							<p style="margin: 0 200px 30px 200px; text-align: left;"><b>Adoption Rate:</b> It is found that the all-time adoption rate for cats and dogs is just under 50%, however this has risen to 59.48% over the past four years. We can also see that dogs have more total adoptions, but have a slightly lower adoption rate than cats. Conversely, cats have less adoptions overall but have a slightly higher adoption rate, with domestic shorthairs being the most popular breed. Cats also have by far the most adoptions in May, and the least in February, closely matching intake patterns. Using this information, shelters should increase marketing in areas outside of domestic shorthairs as these breeds would benefit less from the additional portion. And resources would be better utilized elsewhere.</p>
+							<p style="margin: 0 200px 30px 200px; text-align: left;"><b>Euthenasia Rate:</b> As Austin is a no kill city, the goal for this KPI is 0%, and although the rate is not at 0, it has been declining over time. All time rates are at 6.22%, with a decrease to around 5% in the past 4 years. For cats, shorthair cats have the highest likelihood to be euthanized, with the reason almost exclusively being the animals suffering. However dogs are much more likely to be euthanized over aggressive behavior, with 27% of dogs being euthanized for this reason. Furthermore, Pit Bull Mixes have the highest euthanazia rates at almost 50%. Using this information, shelters should train staff and coach local communities on how to manage dogs to mitigate aggressive behaviour. They should put more focus on areas that have higher percentages of injured strays such as Travis, Austin, and Mustang Ridge.</p>
+							<p style="margin: 0 200px 60px 200px; text-align: left;"><b>Average Length of Stay:</b> Shelters on average carry animals over double the benchmark of 10 days in the system, with Williamson and Cedar Park having the longest averages at 30 days. However, these averages are generally skewed by a few animals with extremely long stays, some over 1,000 days in the shelter. To mitigate this, shelters can implement policies that transfer animals into a foster care system when they pass a certain threshold to give all animals a better chance at a good life, as well as give them more opportunity to grow and be adopted through the foster system. Shelters should also focus marketing efforts on these animals that have incredibly long stays as they are the most in need of help.</p>
+							<p style="margin: 0 200px 30px 200px; text-align: left;"><b>Return To Owner Rate:</b> Austin Animal Center outcomes also required an ‘OutcomeID’ in order to have a unique Primary ID. The ‘DateTime’ field was converted to a ‘yyyy-mm-dd hh:mm’ format, while also reformatting to 24-hour time. ‘MonthYear’ was reformatted from ‘mm-yyyy’ to ‘mmmm yyyy’ in order to match the Intake dataset. The headers were reformatted in PascalCase for overall consistency and to be imported more cleanly into MySQL. This dataset contained a lot of overlap with the intakes dataset, so the fields ‘Name’, ‘AnimalType’, ‘Breed’, and ‘Color’ were dropped in the joining process so as to not have unnecessary duplicates.</p>
+							<p style="margin: 0 200px 30px 200px; text-align: left;"><b>Intake Vs. Outcome Balance:</b> Balance is very consistent with mostly equal intakes and outcomes, however this generally skews more towards intakes indicating the shelters are most often taking more animals in compared to how many go out. This equates to most shelters being at or over capacity. Intakes generally start increasing from February to May, with the majority of which being cats. Using this information, shelters can prepare additional resources and staffing in these higher periods of intakes, and taper off from May to February. This forecasting allows for the best allocation of the limited funds and resources shelters face. </p>
+				
+							<ul class="actions special">
+								<li><a href="index.html" class="button wide">Homepage</a></li>
+							</ul>
+						</div>
+				</div>
+			</section>
+
+		<!-- Footer -->
+			<section id="footer">
+				<div class="container">
+					<header class="major">
+						<h2>Want to learn more?</h2>
+					</header>
+					<p>Here's my resume!</p>
+					<ul class="actions special">
+						<li><a href="#" class="button wide primary">Resume</a></li>
+					</ul>
+				</div>
+				<ul class="copyright">
+					<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+				</ul>
+			</section>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
